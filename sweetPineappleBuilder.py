@@ -72,7 +72,10 @@ def downloadPineappleFw():
 def unpackPineappleFw():
     try:
         cprint('[+] Unpacking WiFi Pineapple Tetra Firmware...', 'blue', attrs=['bold'])
-        subprocess.run('binwalk -eM cake/tetrafw.bin', shell=True)
+        if pwd.getpwuid(os.getuid())[0] == 'root':
+            subprocess.run('binwalk -eM cake/tetrafw.bin --run-as=root', shell=True)
+        else
+            subprocess.run('binwalk -eM cake/tetrafw.bin', shell=True)
         cprint('[+] WiFi Pineapple Tetra firmware has been successfully unpacked!', 'green', attrs=['bold'])    
     except Exception as e:
         cprint('[ERROR] An error occurs... copy this error: {}, and create an issue on GitHub.'.format(e), 'green', attrs=['bold'])
