@@ -74,7 +74,7 @@ def unpackPineappleFw():
         cprint('[+] Unpacking WiFi Pineapple Tetra Firmware...', 'blue', attrs=['bold'])
         if pwd.getpwuid(os.getuid())[0] == 'root':
             subprocess.run('binwalk -eM cake/tetrafw.bin --run-as=root', shell=True)
-        else
+        else:
             subprocess.run('binwalk -eM cake/tetrafw.bin', shell=True)
         cprint('[+] WiFi Pineapple Tetra firmware has been successfully unpacked!', 'green', attrs=['bold'])    
     except Exception as e:
