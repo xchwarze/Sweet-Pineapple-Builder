@@ -12,7 +12,6 @@ from PyInquirer import Separator, Token, prompt, style_from_dict
 from termcolor import cprint
 import subprocess
 import random
-import time
 import os
 
 def banner():
