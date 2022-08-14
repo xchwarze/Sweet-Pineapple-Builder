@@ -13,6 +13,7 @@ from termcolor import cprint
 import subprocess
 import random
 import time
+import pwd
 import os
 
 def banner():
@@ -49,7 +50,10 @@ def checkDependencies():
     try:
         cprint('[+] Installing dependencies ...', 'blue', attrs=['bold'])
         cprint('[+] sudo apt-get install binwalk awk build-essential -y', 'blue', attrs=['bold'])
-        subprocess.run('sudo apt-get install build-essential binwalk gawk -y', shell=True)
+        if pwd.getpwuid(os.getuid())[0] == 'root':
+            subprocess.run('apt-get install build-essential sudo binwalk wget gawk -y', shell=True)
+        else:
+            subprocess.run('sudo apt-get install build-essential binwalk wget gawk -y', shell=True)
         cprint('[+] Dependencies has been successfully installed on this machine!', 'green', attrs=['bold'])
     except Exception as e:
         cprint('[ERROR] An error occurs... copy this error: {} and create an issue on GitHub.'.format(e), 'green', attrs=['bold'])
