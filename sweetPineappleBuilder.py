@@ -51,9 +51,9 @@ def checkDependencies():
         cprint('[+] Installing dependencies ...', 'blue', attrs=['bold'])
         cprint('[+] sudo apt-get install binwalk awk build-essential -y', 'blue', attrs=['bold'])
         if pwd.getpwuid(os.getuid())[0] == 'root':
-            subprocess.run('apt-get install build-essential sudo binwalk wget gawk -y', shell=True)
+            subprocess.run('apt-get install build-essential sudo binwalk python2 wget gawk libncurses5-dev libncursesw5-dev zip -y', shell=True)
         else:
-            subprocess.run('sudo apt-get install build-essential binwalk wget gawk -y', shell=True)
+            subprocess.run('sudo apt-get install build-essential binwalk python2 wget gawk libncurses5-dev libncursesw5-dev zip -y', shell=True)
         cprint('[+] Dependencies has been successfully installed on this machine!', 'green', attrs=['bold'])
     except Exception as e:
         cprint('[ERROR] An error occurs... copy this error: {} and create an issue on GitHub.'.format(e), 'green', attrs=['bold'])
@@ -116,7 +116,7 @@ def updatedRootPassword():
 
 def replaceExtFileSystemScript():
     try:
-        cprint('[+] Replacing the script 20-sd with a custom one to spend the router storage space with a USB stick.', 'blue', attrs=['bold'])
+        cprint('[+] Replacing the script 20-sd with a custom one to expand the router storage space with a USB stick.', 'blue', attrs=['bold'])
         subprocess.run('cp cake/seed/custom-20-sd.sh cake/overlay/etc/hotplug.d/block/20-sd', shell=True)
         cprint('[+] Script 20-sd has been replaced.', 'green', attrs=['bold'])
     except Exception as e:
