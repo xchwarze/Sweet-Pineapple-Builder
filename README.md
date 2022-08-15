@@ -48,7 +48,7 @@ pip install -r requirements.txt
 python3 sweetPineappleBuilder.py 
 ```
 Then select your router from the list and that's all.<br>
-Now, be patient for around 10 minutes to complete the download and compilation process.<br>
+Now, be patient for around 10 minutes to complete the download and compilation process.<br><br>
 ![WiFi pineapple DIY](https://raw.githubusercontent.com/Nwqda/Sweet-Pineapple-Builder/master/cake/seed/Sweet-screenshot.png)
 
 ### Docker
@@ -65,9 +65,9 @@ python3 sweetPineappleBuilder.py
 ```
 
 
-### Proof Of Concept
-[![Video PoC WiFI Pineapple Tetra DIY](https://i.ibb.co/7gXHL9q/500px-youtube-social-play.png)](https://www.youtube.com/watch?v=B5So8t2lyR4)
+### Proof Of Concept / Tutoriel
+[![Video PoC WiFI Pineapple Tetra DIY](https://i.ibb.co/7gXHL9q/500px-youtube-social-play.png)](https://www.youtube.com/watch?v=RrzqmJnzbA4)
 
 
 ### Note
-If you have difficulties to compile the image you can check my blog post ([https://samy.link/blog/build-your-own-wifi-pineapple-tetra-for-7](https://samy.link/blog/build-your-own-wifi-pineapple-tetra-for-7)) or create a ticket in the "issue" tab and I will try to help.
+If you have difficulties to compile the image you can check out my blog post ([https://samy.link/blog/build-your-own-wifi-pineapple-tetra-for-7](https://samy.link/blog/build-your-own-wifi-pineapple-tetra-for-7)) or create a ticket in the "issue" tab and I will try to help.
