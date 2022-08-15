@@ -15,7 +15,7 @@ devNum=$(echo $device | awk -F "" '{print $4}')
         ln -s /dev/$device /dev/sdcard/sd$devNum
 
         [[ $devNum == "1" ]] && {
-            logger "Add USB key as SD card."
+            logger "Mount USB key as SD card."
             umount /sd
             mount /dev/sdcard/sd$devNum /sd && {
                 [[ -e "/sd/etc" ]] || {
@@ -35,7 +35,7 @@ devNum=$(echo $device | awk -F "" '{print $4}')
 
             if [[ ! -f "/sd/usr/lib/python2.7/encodings/__init__.pyc" ]]; then
                 logger "Downloading extra packages."
-                opkg update && opkg --dest sd install php7-mod-openssl php7-mod-session php7-mod-sockets php7-mod-sqlite3 python-logging python-openssl python-sqlite3 python-codecs php7-cgi php7-fpm php7-mod-hash php7-mod-json php7-mod-mbstring && python -m compileall
+                opkg update && opkg --dest sd install python-logging python-openssl python-sqlite3 python-codecs && python -m compileall
             fi
         }
 

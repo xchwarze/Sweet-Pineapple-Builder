@@ -56,7 +56,8 @@ def checkDependencies():
             subprocess.run('sudo apt-get install build-essential binwalk python2 wget gawk libncurses5-dev libncursesw5-dev zip -y', shell=True)
         cprint('[+] Dependencies has been successfully installed on this machine!', 'green', attrs=['bold'])
     except Exception as e:
-        cprint('[ERROR] An error occurs... copy this error: {} and create an issue on GitHub.'.format(e), 'green', attrs=['bold'])
+        cprint('[ERROR] An error occurs... copy this error: Function: checkDependencies. {} and create an issue on GitHub.'.format(e), 'green', attrs=['bold'])
+        exit(0)
 
 
 def downloadPineappleFw():
@@ -66,8 +67,9 @@ def downloadPineappleFw():
         subprocess.run('wget {} -O cake/tetrafw.bin'.format(pineappleFwUrl), shell=True)
         cprint('[+] WiFi Pineapple Tetra firmware has been successfully downloaded!', 'green', attrs=['bold'])
     except Exception as e:
-        cprint('[ERROR] An error occurs... copy this error: {} and create an issue on GitHub.'.format(e), 'green', attrs=['bold'])
- 
+        cprint('[ERROR] An error occurs... copy this error: Function: downloadPineappleFw. {} and create an issue on GitHub.'.format(e), 'green', attrs=['bold'])
+        exit(0)
+
 
 def unpackPineappleFw():
     try:
@@ -78,7 +80,8 @@ def unpackPineappleFw():
             subprocess.run('binwalk -eM cake/tetrafw.bin', shell=True)
         cprint('[+] WiFi Pineapple Tetra firmware has been successfully unpacked!', 'green', attrs=['bold'])    
     except Exception as e:
-        cprint('[ERROR] An error occurs... copy this error: {}, and create an issue on GitHub.'.format(e), 'green', attrs=['bold'])
+        cprint('[ERROR] An error occurs... copy this error: Function: unpackPineappleFw. {} and create an issue on GitHub.'.format(e), 'green', attrs=['bold'])
+        exit(0)
 
 
 def extractPineappleOverlay():
@@ -94,34 +97,17 @@ def extractPineappleOverlay():
             subprocess.run('cp -r {}/{} ./cake/overlay{}'.format(fullpath.strip(), fileName.strip(), directory.strip()), shell=True)
         cprint('[+] Overlay succefully extracted...', 'green', attrs=['bold'])
     except Exception as e:
-        cprint('[ERROR] An error occurs... copy this error: {} and create an issue on GitHub.'.format(e), 'green', attrs=['bold'])
+        cprint('[ERROR] An error occurs... copy this error: Function: extractPineappleOverlay. {} and create an issue on GitHub.'.format(e), 'green', attrs=['bold'])
+        exit(0)
 
 
-def updatedRootPassword():
+def replaceExtFileSystemScript(routerName):
     try:
-        cprint('[+] Updating shadow file and replace default Pineapple password for root user.', 'blue', attrs=['bold'])
-        shadowFile = 'cake/overlay/etc/shadow'
-        passwordHash = '$1$YxFLPZho$24cgp7UqDzHVvzJWWJqvm1' # root
-        user = open(shadowFile,'r')
-        userData = user.read()
-        user.close()
-        newUserData = userData.replace('$1$DhqYuxhs$p/O7aro1npF4yvkRT7qJK.', passwordHash)
-        user = open(shadowFile,'w')
-        user.write(newUserData)
-        user.close()
-        cprint('[+] Shadow file has been updated. New password: root/root', 'green', attrs=['bold'])
+        subprocess.run('/bin/bash cake/seed/autoFix.sh {}'.format(routerName), shell=True)
+        cprint('[+] Auto fix completed.', 'green', attrs=['bold'])
     except Exception as e:
-        cprint('[ERROR] An error occurs... copy this error: {} and create an issue on GitHub.'.format(e), 'green', attrs=['bold'])
-
-
-def replaceExtFileSystemScript():
-    try:
-        cprint('[+] Replacing the script 20-sd with a custom one to expand the router storage space with a USB stick.', 'blue', attrs=['bold'])
-        subprocess.run('cp cake/seed/custom-20-sd.sh cake/overlay/etc/hotplug.d/block/20-sd', shell=True)
-        cprint('[+] Script 20-sd has been replaced.', 'green', attrs=['bold'])
-    except Exception as e:
-        cprint('[ERROR] An error occurs... copy this error: {} and create an issue on GitHub.'.format(e), 'green', attrs=['bold'])
-
+        cprint('[ERROR] An error occurs... copy this error: Function: replaceExtFileSystemScript. {} and create an issue on GitHub.'.format(e), 'green', attrs=['bold'])
+        exit(0)
 
 def downloadOpenwrtImageBuilder():
     try:
@@ -130,7 +116,8 @@ def downloadOpenwrtImageBuilder():
         subprocess.run('wget {} -O cake/openwrt-imagebuilder.tar.xz'.format(imageBuilderUrl), shell=True)
         cprint('[+] Openwrt Image Builder (ar71xx-generic) has been successfully downloaded!', 'green', attrs=['bold'])
     except Exception as e:
-        cprint('[ERROR] An error occurs... copy this error: {} and create an issue on GitHub.'.format(e), 'green', attrs=['bold'])
+        cprint('[ERROR] An error occurs... copy this error: Function: downloadOpenwrtImageBuilder. {} and create an issue on GitHub.'.format(e), 'green', attrs=['bold'])
+        exit(0)
 
 
 def extractOpenwrtImageBuilder():
@@ -139,7 +126,8 @@ def extractOpenwrtImageBuilder():
         subprocess.run('tar -xf cake/openwrt-imagebuilder.tar.xz -C cake', shell=True)
         cprint('[+] OpenWrt Image Builder successfully extracted.', 'green', attrs=['bold'])
     except Exception as e:
-        cprint('[ERROR] An error occurs... copy this error: {} and create an issue on GitHub.'.format(e), 'green', attrs=['bold'])
+        cprint('[ERROR] An error occurs... copy this error: Function: extractOpenwrtImageBuilder. {} and create an issue on GitHub.'.format(e), 'green', attrs=['bold'])
+        exit(0)
 
 
 def buildCustomPineappleImage(routerName):
@@ -150,11 +138,12 @@ def buildCustomPineappleImage(routerName):
         opkgFile = open('cake/seed/opkg.txt', 'r')
         opkgList = opkgFile.read()
         opkgFile.close()
-        cmd = 'sudo make -C cake/openwrt-imagebuilder-19.07.2-ar71xx-generic.Linux-x86_64/ image PROFILE={} PACKAGES="{}" FILES=cake/overlay/'.format(routerName, opkgList)
+        cmd = 'sudo make -C cake/openwrt-imagebuilder-19.07.2-ar71xx-generic.Linux-x86_64/ image PROFILE={} PACKAGES="{}" FILES=../overlay/'.format(routerName, opkgList)
         subprocess.run(cmd, shell=True)
         cprint('[🎉] Congratulation! Your Pineapple Tetra WiFi firmware for the router {} has been successfully compiled.'.format(routerName), 'green', attrs=['bold'])
     except Exception as e:
-        cprint('[ERROR] An error occurs... copy this error: {} and create an issue on GitHub.'.format(e), 'green', attrs=['bold'])
+        cprint('[ERROR] An error occurs... copy this error: Function: buildCustomPineappleImage. {} and create an issue on GitHub.'.format(e), 'green', attrs=['bold'])
+        exit(0)
 
 
 def cleaning(routerName):
@@ -165,7 +154,8 @@ def cleaning(routerName):
         cprint('\n\n[INFO] The custom firmware can be found under cake/customFW/.'.format(routerName), 'cyan', attrs=['bold'])
         cprint('[INFO] The next step is to install the firmware in your device.\n[NOTE] If you are having difficulties, please consult my blog post about the this project (https://samy.link/blog/build-your-own-wifi-pineapple-tetra-for-7). You will find the next steps to follow.'.format(routerName), 'cyan', attrs=['bold'])
     except Exception as e:
-        cprint('[ERROR] An error occurs... copy this error: {} and create an issue on GitHub.'.format(e), 'green', attrs=['bold'])
+        cprint('[ERROR] An error occurs... copy this error: Function: cleaning. {} and create an issue on GitHub.'.format(e), 'green', attrs=['bold'])
+        exit(0)
 
 
 def main():
@@ -180,14 +170,14 @@ def main():
       downloadPineappleFw()
       unpackPineappleFw()
       extractPineappleOverlay()
-      updatedRootPassword()
-      replaceExtFileSystemScript()
       downloadOpenwrtImageBuilder()
       extractOpenwrtImageBuilder()
+      replaceExtFileSystemScript(answer['router'])
       buildCustomPineappleImage(answer['router'])
-      cleaning(answer['router'])
+      # cleaning(answer['router'])
   except Exception as e:
     print('\n[👹] See you soon for a new adventure!\n')
+    exit(0)
 
 
 selectRouter = [
@@ -247,14 +237,8 @@ selectRouter = [
                 'name': 'archer-c7-v4'
             },
             {
-                'name': 'archer-c7-v5'
-            },
-            {
-                'name': 'archer-c60-v1'
-            },
-            {
-                'name': 'archer-c60-v2\n'
-            },
+                'name': 'archer-c7-v5\n'
+            }
         ]
     }
 ]
