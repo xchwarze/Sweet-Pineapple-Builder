@@ -51,6 +51,20 @@ Then select your router from the list and that's all.<br>
 Now, be patient for around 10 minutes to complete the download and compilation process.<br>
 ![WiFi pineapple DIY](https://raw.githubusercontent.com/Nwqda/Sweet-Pineapple-Builder/master/cake/seed/Sweet-screenshot.png)
 
+### Docker
+To make things even simpler, I also created a docker image with the tool and all OpenWrt packages already pre-installed, ~1.4GB.<br>
+To use it, just run:
+
+```bash
+docker pull naqwada/sweetpineapplebuilder
+docker run -dit naqwada/sweetpineapplebuilder sleep infinity
+docker ps -a
+docker exec -it <CONTAINER ID> /bin/bash
+cd /home/Sweet-Pineapple-Builder
+python3 sweetPineappleBuilder.py
+```
+
+
 ### Proof Of Concept
 [![Video PoC WiFI Pineapple Tetra DIY](https://i.ibb.co/7gXHL9q/500px-youtube-social-play.png)](https://www.youtube.com/watch?v=B5So8t2lyR4)
 
