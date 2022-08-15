@@ -56,7 +56,7 @@ def checkDependencies():
             subprocess.run('sudo apt-get install build-essential binwalk python2 wget gawk libncurses5-dev libncursesw5-dev zip -y', shell=True)
         cprint('[+] Dependencies has been successfully installed on this machine!', 'green', attrs=['bold'])
     except Exception as e:
-        cprint('[ERROR] An error occurs... copy this error: Function: checkDependencies. {} and create an issue on GitHub.'.format(e), 'green', attrs=['bold'])
+        cprint('[ERROR] An error occurs... copy this error: Function: checkDependencies. {} and create an issue on GitHub.'.format(e), 'red', attrs=['bold'])
         exit(0)
 
 
@@ -67,7 +67,7 @@ def downloadPineappleFw():
         subprocess.run('wget {} -O cake/tetrafw.bin'.format(pineappleFwUrl), shell=True)
         cprint('[+] WiFi Pineapple Tetra firmware has been successfully downloaded!', 'green', attrs=['bold'])
     except Exception as e:
-        cprint('[ERROR] An error occurs... copy this error: Function: downloadPineappleFw. {} and create an issue on GitHub.'.format(e), 'green', attrs=['bold'])
+        cprint('[ERROR] An error occurs... copy this error: Function: downloadPineappleFw. {} and create an issue on GitHub.'.format(e), 'red', attrs=['bold'])
         exit(0)
 
 
@@ -80,7 +80,7 @@ def unpackPineappleFw():
             subprocess.run('binwalk -eM cake/tetrafw.bin', shell=True)
         cprint('[+] WiFi Pineapple Tetra firmware has been successfully unpacked!', 'green', attrs=['bold'])    
     except Exception as e:
-        cprint('[ERROR] An error occurs... copy this error: Function: unpackPineappleFw. {} and create an issue on GitHub.'.format(e), 'green', attrs=['bold'])
+        cprint('[ERROR] An error occurs... copy this error: Function: unpackPineappleFw. {} and create an issue on GitHub.'.format(e), 'red', attrs=['bold'])
         exit(0)
 
 
@@ -97,7 +97,7 @@ def extractPineappleOverlay():
             subprocess.run('cp -r {}/{} ./cake/overlay{}'.format(fullpath.strip(), fileName.strip(), directory.strip()), shell=True)
         cprint('[+] Overlay succefully extracted...', 'green', attrs=['bold'])
     except Exception as e:
-        cprint('[ERROR] An error occurs... copy this error: Function: extractPineappleOverlay. {} and create an issue on GitHub.'.format(e), 'green', attrs=['bold'])
+        cprint('[ERROR] An error occurs... copy this error: Function: extractPineappleOverlay. {} and create an issue on GitHub.'.format(e), 'red', attrs=['bold'])
         exit(0)
 
 
@@ -106,7 +106,7 @@ def replaceExtFileSystemScript(routerName):
         subprocess.run('/bin/bash cake/seed/autoFix.sh {}'.format(routerName), shell=True)
         cprint('[+] Auto fix completed.', 'green', attrs=['bold'])
     except Exception as e:
-        cprint('[ERROR] An error occurs... copy this error: Function: replaceExtFileSystemScript. {} and create an issue on GitHub.'.format(e), 'green', attrs=['bold'])
+        cprint('[ERROR] An error occurs... copy this error: Function: replaceExtFileSystemScript. {} and create an issue on GitHub.'.format(e), 'red', attrs=['bold'])
         exit(0)
 
 def downloadOpenwrtImageBuilder():
@@ -116,7 +116,7 @@ def downloadOpenwrtImageBuilder():
         subprocess.run('wget {} -O cake/openwrt-imagebuilder.tar.xz'.format(imageBuilderUrl), shell=True)
         cprint('[+] Openwrt Image Builder (ar71xx-generic) has been successfully downloaded!', 'green', attrs=['bold'])
     except Exception as e:
-        cprint('[ERROR] An error occurs... copy this error: Function: downloadOpenwrtImageBuilder. {} and create an issue on GitHub.'.format(e), 'green', attrs=['bold'])
+        cprint('[ERROR] An error occurs... copy this error: Function: downloadOpenwrtImageBuilder. {} and create an issue on GitHub.'.format(e), 'red', attrs=['bold'])
         exit(0)
 
 
@@ -126,7 +126,7 @@ def extractOpenwrtImageBuilder():
         subprocess.run('tar -xf cake/openwrt-imagebuilder.tar.xz -C cake', shell=True)
         cprint('[+] OpenWrt Image Builder successfully extracted.', 'green', attrs=['bold'])
     except Exception as e:
-        cprint('[ERROR] An error occurs... copy this error: Function: extractOpenwrtImageBuilder. {} and create an issue on GitHub.'.format(e), 'green', attrs=['bold'])
+        cprint('[ERROR] An error occurs... copy this error: Function: extractOpenwrtImageBuilder. {} and create an issue on GitHub.'.format(e), 'red', attrs=['bold'])
         exit(0)
 
 
@@ -142,7 +142,7 @@ def buildCustomPineappleImage(routerName):
         subprocess.run(cmd, shell=True)
         cprint('[🎉] Congratulation! Your Pineapple Tetra WiFi firmware for the router {} has been successfully compiled.'.format(routerName), 'green', attrs=['bold'])
     except Exception as e:
-        cprint('[ERROR] An error occurs... copy this error: Function: buildCustomPineappleImage. {} and create an issue on GitHub.'.format(e), 'green', attrs=['bold'])
+        cprint('[ERROR] An error occurs... copy this error: Function: buildCustomPineappleImage. {} and create an issue on GitHub.'.format(e), 'red', attrs=['bold'])
         exit(0)
 
 
@@ -154,7 +154,7 @@ def cleaning(routerName):
         cprint('\n\n[INFO] The custom firmware can be found under cake/customFW/.'.format(routerName), 'cyan', attrs=['bold'])
         cprint('[INFO] The next step is to install the firmware in your device.\n[NOTE] If you are having difficulties, please consult my blog post about the this project (https://samy.link/blog/build-your-own-wifi-pineapple-tetra-for-7). You will find the next steps to follow.'.format(routerName), 'cyan', attrs=['bold'])
     except Exception as e:
-        cprint('[ERROR] An error occurs... copy this error: Function: cleaning. {} and create an issue on GitHub.'.format(e), 'green', attrs=['bold'])
+        cprint('[ERROR] An error occurs... copy this error: Function: cleaning. {} and create an issue on GitHub.'.format(e), 'red', attrs=['bold'])
         exit(0)
 
 
