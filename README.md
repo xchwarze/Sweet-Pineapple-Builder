@@ -1,6 +1,7 @@
 # Sweet WiFi Pineapple Tetra Builder
 
 Sweet Pineapple Builder is a python script that automate the whole process of creating a custom WiFi Pineapple Tetra image. As the WiFi Pineapple Tetra firmware is a custom version of OpenWrt (19.07.2), it is therefore possible to create our own custom firmware tailored for any router based on the MIPS 24Kc architecture.<br><br>
+Full blog post for more details: [https://samy.link/blog/build-your-own-wifi-pineapple-tetra-for-7](https://samy.link/blog/build-your-own-wifi-pineapple-tetra-for-7)
 
 ![WiFi pineapple DIY Logo](https://raw.githubusercontent.com/Nwqda/Sweet-Pineapple-Builder/master/cake/seed/Sweet-bg.jpeg)
 
