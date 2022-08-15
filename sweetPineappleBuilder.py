@@ -166,7 +166,7 @@ def main():
       answer = prompt(selectRouter, style=promptStyle)
       cprint('[✔️] Router {} selected'.format(answer['router']), 'green', attrs=['bold'])
       
-      binwalkPath = checkDependencies()
+      checkDependencies()
       downloadPineappleFw()
       unpackPineappleFw()
       extractPineappleOverlay()
@@ -175,6 +175,7 @@ def main():
       replaceExtFileSystemScript(answer['router'])
       buildCustomPineappleImage(answer['router'])
       cleaning(answer['router'])
+      
   except Exception as e:
     print('\n[👹] See you soon for a new adventure!\n')
     exit(0)
