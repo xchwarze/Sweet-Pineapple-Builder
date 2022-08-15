@@ -174,7 +174,7 @@ def main():
       extractOpenwrtImageBuilder()
       replaceExtFileSystemScript(answer['router'])
       buildCustomPineappleImage(answer['router'])
-      # cleaning(answer['router'])
+      cleaning(answer['router'])
   except Exception as e:
     print('\n[👹] See you soon for a new adventure!\n')
     exit(0)
