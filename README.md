@@ -67,7 +67,7 @@ python3 sweetPineappleBuilder.py
 ```
 
 
-### Proof Of Concept / Tutoriel
+### Proof Of Concept / Tutorial
 [![Video PoC WiFI Pineapple Tetra DIY](https://i.ibb.co/7gXHL9q/500px-youtube-social-play.png)](https://www.youtube.com/watch?v=RrzqmJnzbA4)
 
 
