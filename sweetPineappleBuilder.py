@@ -139,6 +139,7 @@ def buildCustomPineappleImage(routerName):
         opkgList = opkgFile.read()
         opkgFile.close()
         cmd = 'sudo make -C cake/openwrt-imagebuilder-19.07.2-ar71xx-generic.Linux-x86_64/ image PROFILE={} PACKAGES="{}" FILES=../overlay/'.format(routerName, opkgList)
+        cprint('[+] {}'.format(cmd), 'blue', attrs=['bold'])
         subprocess.run(cmd, shell=True)
         cprint('[🎉] Congratulation! Your Pineapple Tetra WiFi firmware for the router {} has been successfully compiled.'.format(routerName), 'green', attrs=['bold'])
     except Exception as e:
@@ -172,8 +173,8 @@ def main():
       extractPineappleOverlay()
       downloadOpenwrtImageBuilder()
       extractOpenwrtImageBuilder()
-      replaceExtFileSystemScript(answer['router'])
-      buildCustomPineappleImage(answer['router'])
+      replaceExtFileSystemScript(answer['router'].strip())
+      buildCustomPineappleImage(answer['router'].strip())
       cleaning(answer['router'])
       
   except Exception as e:
