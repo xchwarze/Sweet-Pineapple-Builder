@@ -122,6 +122,9 @@ cp cake/seed/95-network.sh cake/overlay/etc/uci-defaults/95-network.sh
 printf "Fixing default wifi config to use multiple wifi cards\n"
 cp cake/seed/mac80211.sh cake/overlay/lib/wifi/mac80211.sh
 
+printf "Fixing missing libubus2019 package\n"
+cp cake/seed/libubus20191227_2019-12-27-041c9d1c-1_mips_24kc.ipk cake/openwrt-imagebuilder-19.07.2-ar71xx-generic.Linux-x86_64/packages/libubus20191227_2019-12-27-041c9d1c-1_mips_24kc.ipk
+
 printf "Replacing the script 20-sd with a custom one to expand the router storage space with a USB stick.\n"
 cp cake/seed/custom-20-sd.sh cake/overlay/etc/hotplug.d/block/20-sd
 rm cake/overlay/etc/hotplug.d/usb/30-sd
