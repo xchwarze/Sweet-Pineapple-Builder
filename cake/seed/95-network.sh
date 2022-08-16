@@ -21,7 +21,7 @@ uci set network.wan.dns='1.1.1.1, 1.0.0.1'
 
 uci set network.wan6.proto='dhcpv6'
 
-uci set wireless.@wifi-iface[1].ifname=wlan1
+uci set wireless.@wifi-iface[1].ifname='wlan1'
 
 uci commit network
 uci commit wireless
