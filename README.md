@@ -12,7 +12,7 @@ For now the script only support the following routers:
 
 Brand       | Device         | CPU (MHZ)         | Flash MB| RAM MB | More info|
 -------------|-------------| -----------| -----------| -----------| -----------|
-HAK5  | Pineapple Tetra | 580 |32 + 2GB eMMC|256|https://openwrt.org/toh/hwdata/hak5/hak5_wifi_pineapple_mark_7
+HAK5  | Pineapple Tetra | 580 |32 + 2GB eMMC|64|https://openwrt.org/toh/hwdata/hak5/hak5_wifi_pineapple_mark_7
 Buffalo  | WZR450HP2 | 400 |32|64|https://openwrt.org/toh/buffalo/wzr-450hp2
 Buffalo  | WZR600DHP | 680 |32|128|https://openwrt.org/toh/hwdata/buffalo/buffalo_wzr-600dhp
 Buffalo  | WZRHPAG300H | 680 |32|128|https://openwrt.org/toh/hwdata/buffalo/buffalo_wzr-hp-ag300h_v1
